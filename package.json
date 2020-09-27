@@ -1,0 +1,19 @@
+{
+  "name": "canjs-weather-widget",
+  "version": "1.0.0",
+  "description": "Weather widget",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rene-mdd/canJs-weather-widget.git"
+  },
+  "author": "Rene R",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rene-mdd/canJs-weather-widget/issues"
+  },
+  "homepage": "https://github.com/rene-mdd/canJs-weather-widget#readme"
+}

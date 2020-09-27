@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>CanJS Location Weather</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+</head>
+
+<body>
+    <weather-tracker>
+
+    </weather-tracker>
+    <!-- <div id="map"></div> -->
+
+    <script>
+        window.googleAPI = new Promise(function(resolve) {
+            const script = document.createElement("script");
+            //get a free google maps api
+            let googleApi = ""
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApi}`
+            document.body.appendChild(script);
+            script.onload = resolve;
+        });
+        
+        const appKey = '17ba01d3931252096b4ab03df56891cd';
+          
+        function transformData (data) {
+            let today = new Date();
+            let forecasts = [];
+        
+            const transformedForecast = data.list.map(function (item) {
+                return {
+                    high: item.main.temp_max,
+                    low: item.main.temp_min,
+                    text: item.weather[0].description,
+                    icon: item.weather[0].icon,
+                    date: new Date(item.dt_txt),
+                }
+            });
+        
+            const todayForecasts = transformedForecast.filter(function(forecast) {
+                const forecastDate = forecast.date;
+                return today.getDate() === forecastDate.getDate();
+            });
+        
+            if (todayForecasts.length) {
+                forecasts.push(todayForecasts[0]);
+            }
+        
+            const nextDaysForecasts = transformedForecast.filter(function (forecast) {
+                const forecastDate = forecast.date;
+                return 	today.getDate() !== forecastDate.getDate() && forecastDate.getHours() === 12;
+            });
+        
+            forecasts = forecasts.concat(nextDaysForecasts);
+          console.log(forecasts);
+            return forecasts;
+        };
+        </script>
+    <!-- <google-map-view></google-map-view> -->
+    <!-- <script>
+        function initMap() {
+     var myLatlng = {lat: 18.7874, lng: -70.5903};
+    
+     var map = new google.maps.Map(
+         document.getElementById('map'), {zoom: 4, center: myLatlng});
+    
+     // Create the initial InfoWindow.
+     var infoWindow = new google.maps.InfoWindow(
+         {content: 'Click the map to get Lat/Lng!', position: myLatlng});
+     infoWindow.open(map);
+     // Configure the click listener.
+     map.addListener('click', function(mapsMouseEvent) {
+       // Close the current InfoWindow.
+       infoWindow.close();
+    
+       // Create a new InfoWindow.
+       infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+       console.log(mapsMouseEvent)
+       infoWindow.setContent(mapsMouseEvent.latLng.toString());
+       infoWindow.open(map);
+      
+     });
+    }
+       </script> -->
+    <script src="//cdn.jsdelivr.net/npm/less"></script>
+    <script type="module" src="/index.js"></script>
+    <!-- <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnXhHDsLiLaVnSKE4W4rNSwfjQwiQmqco&callback=initMap">
+        </script> -->
+</body>
+
+</html>

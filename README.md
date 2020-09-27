@@ -1,1 +1,0 @@
-# canJs-weather-widget
