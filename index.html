@@ -12,51 +12,7 @@
 <body>
     <google-map-view></google-map-view>
 
-    <script>
-        window.googleAPI = new Promise(function(resolve) {
-            const script = document.createElement("script");
-            //get a free google maps api
-            let googleApi = "AIzaSyBTNEqMsB294A8yLtKz9qniF-A7Wxoxx3k"
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApi}`
-            document.body.appendChild(script);
-            script.onload = resolve;
-        });
-        
-        const appKey = 'f1d6ab0fa88484920ee711cc585146a5';
-          
-        function transformData (data) {
-            let today = new Date();
-            let forecasts = [];
-        
-            const transformedForecast = data.list.map(function (item) {
-                return {
-                    high: item.main.temp_max,
-                    low: item.main.temp_min,
-                    text: item.weather[0].description,
-                    icon: item.weather[0].icon,
-                    date: new Date(item.dt_txt),
-                }
-            });
-        
-            const todayForecasts = transformedForecast.filter(function(forecast) {
-                const forecastDate = forecast.date;
-                return today.getDate() === forecastDate.getDate();
-            });
-        
-            if (todayForecasts.length) {
-                forecasts.push(todayForecasts[0]);
-            }
-        
-            const nextDaysForecasts = transformedForecast.filter(function (forecast) {
-                const forecastDate = forecast.date;
-                return 	today.getDate() !== forecastDate.getDate() && forecastDate.getHours() === 12;
-            });
-        
-            forecasts = forecasts.concat(nextDaysForecasts);
-          console.log(forecasts)
-            return forecasts;
-        };
-        </script>
+    
 
     <script src="//cdn.jsdelivr.net/npm/less"></script>
     <script type="module" src="/index.js"></script>
