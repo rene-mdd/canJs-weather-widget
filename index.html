@@ -10,16 +10,13 @@
 </head>
 
 <body>
-    <weather-tracker>
-
-    </weather-tracker>
-    <!-- <div id="map"></div> -->
+    <google-map-view></google-map-view>
 
     <script>
         window.googleAPI = new Promise(function(resolve) {
             const script = document.createElement("script");
             //get a free google maps api
-            let googleApi = ""
+            let googleApi = "AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI"
             script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApi}`
             document.body.appendChild(script);
             script.onload = resolve;
@@ -56,41 +53,14 @@
             });
         
             forecasts = forecasts.concat(nextDaysForecasts);
-          console.log(forecasts);
+          console.log(forecasts)
             return forecasts;
         };
         </script>
-    <!-- <google-map-view></google-map-view> -->
-    <!-- <script>
-        function initMap() {
-     var myLatlng = {lat: 18.7874, lng: -70.5903};
-    
-     var map = new google.maps.Map(
-         document.getElementById('map'), {zoom: 4, center: myLatlng});
-    
-     // Create the initial InfoWindow.
-     var infoWindow = new google.maps.InfoWindow(
-         {content: 'Click the map to get Lat/Lng!', position: myLatlng});
-     infoWindow.open(map);
-     // Configure the click listener.
-     map.addListener('click', function(mapsMouseEvent) {
-       // Close the current InfoWindow.
-       infoWindow.close();
-    
-       // Create a new InfoWindow.
-       infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
-       console.log(mapsMouseEvent)
-       infoWindow.setContent(mapsMouseEvent.latLng.toString());
-       infoWindow.open(map);
-      
-     });
-    }
-       </script> -->
+
     <script src="//cdn.jsdelivr.net/npm/less"></script>
     <script type="module" src="/index.js"></script>
-    <!-- <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnXhHDsLiLaVnSKE4W4rNSwfjQwiQmqco&callback=initMap">
-        </script> -->
+
 </body>
 
 </html>
