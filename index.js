@@ -44,7 +44,6 @@ class GoogleMapView extends StacheElement {
     {{/ if}}
   </div>
     </div>
-  {{console.log(message)}}
 `;
 
 static props = {
@@ -110,7 +109,7 @@ window.googleAPI = new Promise(function(resolve) {
   //get a free google maps api
   let googleApi = "AIzaSyDD6UHxV6HzS6p3YjY0JNCm62a8VBt5A4g"
   script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApi}`
-  document.body.appendChild(script).setAttribute("defer", "defer");
+  document.body.appendChild(script);
   script.onload = resolve;
 });
 
