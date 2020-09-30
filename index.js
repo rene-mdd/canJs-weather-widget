@@ -108,7 +108,7 @@ static props = {
 window.googleAPI = new Promise(function(resolve) {
   const script = document.createElement("script");
   //get a free google maps api
-  let googleApi = "AIzaSyBTNEqMsB294A8yLtKz9qniF-A7Wxoxx3k"
+  let googleApi = "AIzaSyDD6UHxV6HzS6p3YjY0JNCm62a8VBt5A4g"
   script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApi}`
   document.body.appendChild(script).setAttribute("defer", "defer");
   script.onload = resolve;
