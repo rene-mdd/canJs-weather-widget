@@ -17,7 +17,7 @@ class GoogleMapView extends StacheElement {
         {{# if(this.forecastPromise.isResolved) }}
         
             <div class="forecast">
-                <h1>5-Day  Weather Forecast</h1>
+                <h1>Weather Forecast</h1>
                 <ul>
                     {{# for(forecast of this.forecastPromise.value) }}
                    
@@ -50,8 +50,6 @@ static props = {
   
   map: type.Any,
   mapElement: type.maybeConvert(HTMLElement),
-  vehicles: type.Any,
-  markers: type.Any,
   location: String,
   forecastPromise: type.Any,
   message: false
@@ -64,7 +62,7 @@ static props = {
   connected() {
     googleAPI.then(() => {
       this.map = new google.maps.Map(this.mapElement, {
-        zoom: 6,
+        zoom: 4,
         center: {
           lat: 52.520008,
           lng: 13.404954
@@ -75,7 +73,6 @@ static props = {
       this.map.addListener('click', function(evt) {
         const lat = evt.latLng.lat();
         const lng = evt.latLng.lng();
-        console.log(lat, lng);
         // call forecastPromise;
       
         this.forecastPromise = fetch(
@@ -106,7 +103,7 @@ static props = {
 
 window.googleAPI = new Promise(function(resolve) {
   const script = document.createElement("script");
-  //get a free google maps api
+
   let googleApi = "AIzaSyDD6UHxV6HzS6p3YjY0JNCm62a8VBt5A4g"
   script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApi}`
   document.body.appendChild(script);
@@ -146,7 +143,6 @@ function transformData (data) {
   });
 
   forecasts = forecasts.concat(nextDaysForecasts);
-console.log(forecasts)
   return forecasts;
 };
 
