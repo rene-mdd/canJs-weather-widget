@@ -110,9 +110,11 @@ window.googleAPI = new Promise(function(resolve) {
   //get a free google maps api
   let googleApi = "AIzaSyBTNEqMsB294A8yLtKz9qniF-A7Wxoxx3k"
   script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApi}`
-  document.body.appendChild(script);
+  document.body.appendChild(script).setAttribute("defer", "defer");
   script.onload = resolve;
 });
+
+//info modal
 
 const appKey = 'f1d6ab0fa88484920ee711cc585146a5';
 
