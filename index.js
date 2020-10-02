@@ -71,6 +71,7 @@ static props = {
       
       
       this.map.addListener('click', function(evt) {
+        if(!this.message){
         const lat = evt.latLng.lat();
         const lng = evt.latLng.lng();
         // call forecastPromise;
@@ -87,6 +88,7 @@ static props = {
         ).then(response => {
           return response.json();
         }).then(transformData)
+      }
       }.bind(this));
     });
 }
